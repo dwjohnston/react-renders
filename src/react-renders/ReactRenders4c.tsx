@@ -1,5 +1,5 @@
 "use client"
-import { useState } from "react";
+import React, { useState } from "react";
 import "./style.css";
 import { RenderTracker } from "./common";
 
@@ -34,21 +34,36 @@ function Footer() {
     </div>
 }
 
-export function ReactRenders4() {
-    const [value, setValue] = useState('')
-    return <div className="demo" >
 
-        <h2>Example 4</h2>
+
+function PassthroughShell(props: {
+    headerSlot: React.ReactNode;
+    bodySlot: React.ReactNode;
+    footerSlot: React.ReactNode;
+}) {
+    const [value, setValue] = useState('')
+    return <div className="demo">
+
+        <h2>Example 4c</h2>
         <p>
-            Every key stroke causes rerenders components
+            Simple refactor to avoid the renders
         </p>
         <div>
             <input type="text" value={value} onChange={(e) => setValue(e.target.value)} placeholder="type here" />
             <button onClick={() => alert(value)}>Submit</button>
 
-            <Header />
-            <Body />
-            <Footer />
+            <div className="header">{props.headerSlot}</div>
+
+            <div className="body">{props.bodySlot}</div>
+            <div className="footer">{props.footerSlot}</div>
+
         </div>
     </div >
+}
+export function ReactRenders4c() {
+    return <PassthroughShell
+        headerSlot={<Header />}
+        bodySlot={<Body />}
+        footerSlot={<Footer />}
+    />
 }

@@ -34,9 +34,9 @@ const MyProvider = ({ children }: { children: React.ReactNode }) => {
 
 
 export function ReactRenders2() {
-    const [value, setValue] = React.useState("foo");
+    const [, setValue] = React.useState("foo");
 
-    return <MyProvider>
+    return <div className="demo"><MyProvider>
 
         <button
             className="global-render-button"
@@ -56,6 +56,7 @@ export function ReactRenders2() {
             <SomeUnrelatedComponent />
         </div>
     </MyProvider >
+    </div>
 }
 
 

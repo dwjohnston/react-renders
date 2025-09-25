@@ -1,5 +1,4 @@
 "use client"
-import { useState } from "react";
 import "./style.css";
 import { RenderTracker } from "./common";
 
@@ -34,17 +33,23 @@ function Footer() {
     </div>
 }
 
-export function ReactRenders4() {
-    const [value, setValue] = useState('')
-    return <div className="demo" >
+export function ReactRenders4b() {
+    return <div className="demo">
 
-        <h2>Example 4</h2>
+        <h2>Example 4b</h2>
         <p>
-            Every key stroke causes rerenders components
+            Just intercept the form submission event
         </p>
         <div>
-            <input type="text" value={value} onChange={(e) => setValue(e.target.value)} placeholder="type here" />
-            <button onClick={() => alert(value)}>Submit</button>
+            <form onSubmit={(e) => {
+                e.preventDefault();
+                const formData = new FormData(e.currentTarget);
+                const value = formData.get("value");
+                alert(value)
+            }}>
+                <input type="text" name="value" placeholder="type here" />
+                <button type="submit">Submit</button>
+            </form>
 
             <Header />
             <Body />

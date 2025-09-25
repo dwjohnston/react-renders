@@ -80,3 +80,31 @@
     width: 50px;
     height: 50px;
 }
+
+
+.header, .body, .footer {
+    border: dashed 1px grey;
+    margin: 1em; 
+    padding: 1em;
+
+    & > div {
+        display: flex; 
+        
+    }
+}
+
+
+main {
+    display: flex; 
+    flex-flow: column nowrap; 
+    justify-content: center;
+    align-items: flex-start;
+    margin: 0 auto;
+
+
+    width: 800px;
+}
+
+details {
+    margin: 1em;
+}

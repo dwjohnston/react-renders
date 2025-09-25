@@ -1,56 +1,38 @@
 
 import React from "react";
 
-const style1 = []; 
-const style2 = []; 
+function SomeThing(props: {
+    text: string;
+}) {
+    return <span>Hello {props.text}</span>
+}
 
 export function ChildrenStyleOne() {
-
-    style1.push(<SomeComponent/>)
-    const [value, setValue] = React.useState(0)
-    return <>
-        <button onClick={() => {
-            setValue((prev) => prev + 1);;
-        }}>Increase count: {value}</button>
-        <SomeComponent />
-    </ >
+    return <div id="foo">
+        <p>A regular node</p>
+        <SomeThing text="world!" />
+    </div>
 }
 
 export function ChildrenStyleTwo(props: React.PropsWithChildren) {
-    style2.push(props.children); 
-    const [value, setValue] = React.useState(0)
-    return <>
-        <button onClick={() => {
-            setValue((prev) => prev + 1);;
-        }}>Increase count: {value}</button>
+    return <div id="bar">
+        <p>A regular node</p>
         {props.children}
-    </>
-}
-
-
-function SomeComponent(){
-    const randomValue = Math.random(); 
-
-    return <div>{randomValue}</div>
-}
-
-export function Main() {
-
-    return <div>
-          <button onClick={() => {
-                console.log(style1, style2);
-                console.log("style1", style1[1] === style1[2]); 
-                console.log("style2", style2[1] === style2[2]);  
-                console.log(style1[1])
-                console.log(style1[2])
-          }}>Click me</button>
-          <ChildrenStyleOne/>
-
-          <ChildrenStyleTwo>
-              <SomeComponent/>
-          </ChildrenStyleTwo>
     </div>
-        }
+}
+
+export function Main1() {
+    return <ChildrenStyleOne />
+
+}
+
+export function Main2() {
+    return <ChildrenStyleTwo>
+        <SomeThing text={"world!"} />
+    </ChildrenStyleTwo>
+}
 
 
-export default Main;
+
+
+

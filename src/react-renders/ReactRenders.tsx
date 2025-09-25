@@ -24,26 +24,28 @@ const MyProvider = ({ children }: { children: React.ReactNode }) => {
 
 
 export function ReactRenders1() {
-    const [value, setValue] = React.useState("foo");
+    const [, setValue] = React.useState("foo");
 
-    return <MyProvider>
+    return <div className="demo">
+        <MyProvider>
 
-        <button onClick={() => {
-            setValue(`${Math.random()}`);
-        }}
-            className="global-render-button"
-        >  Render all</button>
+            <button onClick={() => {
+                setValue(`${Math.random()}`);
+            }}
+                className="global-render-button"
+            >  Render all</button>
 
-        <div className="render-tracker-demo">
+            <div className="render-tracker-demo">
 
-            <StateChanger />
-            <StateDisplayer />
+                <StateChanger />
+                <StateDisplayer />
 
-            <SomeUnrelatedComponent />
-            <SomeUnrelatedComponent />
-            <SomeUnrelatedComponent />
-        </div>
-    </MyProvider >
+                <SomeUnrelatedComponent />
+                <SomeUnrelatedComponent />
+                <SomeUnrelatedComponent />
+            </div>
+        </MyProvider >
+    </div>
 }
 
 
@@ -53,7 +55,7 @@ function StateChanger() {
     return <div className="state-changer">
         <strong>State Changer</strong>
 
-        <button onClick={() => setValue(`${Math.random()}`)}>Change state</button>
+        <button onClick={() => setValue(`${Math.random().toFixed(4)}`)}>Change state</button>
         <RenderTracker />
     </div >
 }
@@ -72,4 +74,5 @@ function SomeUnrelatedComponent() {
         <strong>Some unrelated component</strong>
         <RenderTracker />
     </div>
+
 }

@@ -1,12 +1,12 @@
 //@ts-nocheck
 
 "use client"
-import React, { PropsWithChildren, useContext, useState, useEffect} from "react";
+import React, { type PropsWithChildren, useState, useEffect } from "react";
 import "./style.css";
 
 const style1 = {
     renderCount: 0,
-    props: [], 
+    props: [],
     propsDotChildren: [],
 
     theChildren: [],
@@ -14,7 +14,7 @@ const style1 = {
 
 const style2 = {
     renderCount: 0,
-    props: [], 
+    props: [],
     propsDotChildren: [],
     theChildren: [],
 
@@ -25,10 +25,10 @@ const propsTrackers = [];
 
 
 
-export function RenderTracker(props) {
+export function RenderTracker() {
 
-    let randX = Math.floor(Math.random() * 100);
-    let randY = Math.floor(Math.random() * 100);
+    const randX = Math.floor(Math.random() * 100);
+    const randY = Math.floor(Math.random() * 100);
 
 
     const [mountValue, setMountValue] = useState(0);
@@ -36,23 +36,23 @@ export function RenderTracker(props) {
         setMountValue(Math.random())
         propsTrackers.push(() => {
 
-        }); 
-    },[])
+        });
+    }, [])
 
 
     return <div className="render-tracker">
         <strong>Render Tracker</strong>
-        <p className="mount-value">{mountValue ===0? <>&#8203;</>: <>Mount value: {mountValue.toFixed(4)}</>}</p>
+        <p className="mount-value">{mountValue === 0 ? <>&#8203;</> : <>Mount value: {mountValue.toFixed(4)}</>}</p>
         <div className="tracking-dot-container">
             <div className="render-tracking-dot" style={{ top: `${randY}%`, left: `${randX}%` }}>
-        </div>
+            </div>
         </div>
     </div >
 }
 
 
 
-export function ChildrenStyleOne(props) {
+export function ChildrenStyleOne() {
 
 
     style1.renderCount++;
@@ -103,34 +103,34 @@ function Shell(props: PropsWithChildren) {
 }
 
 export function ReactRenders3() {
-        const [value, setValue] = React.useState(0)
+    const [value, setValue] = React.useState(0)
 
-    return <div className="render-tracker-demo">
+    return <div className="demo">
 
-      <button onClick={() => {
+        <button onClick={() => {
             setValue((prev) => prev + 1);;
         }}>Increase count: {value}</button>
-        <button onClick ={() =>{
-            console.log(style1,style2);
+        <button onClick={() => {
+            console.log(style1, style2);
 
-            const i = style1.renderCount - 2; 
-            const j = style1.renderCount - 1; 
+            const i = style1.renderCount - 2;
+            const j = style1.renderCount - 1;
             console.log(style1.props[i] === style1.props[j])
             console.log(style1.propsDotChildren[i] === style1.propsDotChildren[j])
             console.log(style1.theChildren[i] === style1.theChildren[j])
 
 
-            const x = style2.renderCount - 2; 
-            const y = style2.renderCount - 1; 
+            const x = style2.renderCount - 2;
+            const y = style2.renderCount - 1;
             console.log(style2.props[x] === style2.props[y])
             console.log(style2.propsDotChildren[x] === style2.propsDotChildren[y])
             console.log(style2.theChildren[x] === style2.theChildren[y])
         }}>Print</button>
         <Shell>
-        <ChildrenStyleOne />
-        <ChildrenStyleTwo>
-            <RenderTracker />
-        </ChildrenStyleTwo>
+            <ChildrenStyleOne />
+            <ChildrenStyleTwo>
+                <RenderTracker />
+            </ChildrenStyleTwo>
 
         </Shell>
     </div >

@@ -1,33 +1,33 @@
 "use client"
-import React, { useContext } from "react";
+import React from "react";
 import "./style.css";
 import { RenderTracker } from "./common";
 
 
 
- function ChildrenStyleOne() {
+function ChildrenStyleOne() {
     const [isLeft, setIsLeft] = React.useState(true)
     return <div className="some-parent-component double-wide">
         <strong>ChildrenStyleOne</strong>
         <p>RenderTracker is directly rendered</p>
         <button onClick={() => {
             setIsLeft((prev) => !prev);;
-        }}>Move to {isLeft ?"right": "left"}</button>
+        }}>Move to {isLeft ? "right" : "left"}</button>
 
         <div className="left-right">
             <div>
-                {isLeft && <RenderTracker/>}
+                {isLeft && <RenderTracker />}
             </div>
             <div>
-                {!isLeft && <RenderTracker/>}
+                {!isLeft && <RenderTracker />}
             </div>
         </div>
- 
+
     </div >
 }
 
- function ChildrenStyleTwo(props: React.PropsWithChildren) {
-    const {children} = props;
+function ChildrenStyleTwo(props: React.PropsWithChildren) {
+    const { children } = props;
     const [isLeft, setIsLeft] = React.useState(true)
     return <div className="some-parent-component double-wide">
         <strong>ChildrenStyleTwo</strong>
@@ -35,7 +35,7 @@ import { RenderTracker } from "./common";
 
         <button onClick={() => {
             setIsLeft((prev) => !prev);;
-        }}>Move to {isLeft ?"right": "left"}</button>
+        }}>Move to {isLeft ? "right" : "left"}</button>
 
         <div className="left-right">
             <div>
@@ -45,16 +45,17 @@ import { RenderTracker } from "./common";
                 {!isLeft && children}
             </div>
         </div>
- 
+
     </div >
-    
+
 }
 
 export function ReactRenders5() {
-    return <div className="render-tracker-demo">
+    return <div className="demo">
         <ChildrenStyleOne />
         <ChildrenStyleTwo>
             <RenderTracker />
         </ChildrenStyleTwo>
     </div >
 }
+
