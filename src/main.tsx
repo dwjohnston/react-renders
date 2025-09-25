@@ -14,8 +14,9 @@ import { ReactRenders4c } from './react-renders/ReactRenders4c.tsx'
 
 
 import { Main1, Main2 } from "./App.tsx"
+import { ReactRenders3c } from './react-renders/ReactRenders3c.tsx'
 
-createRoot(document.getElementById('root')!).render(
+createRoot(document.getElementById('root')!,).render(
   <StrictMode>
 
 
@@ -35,6 +36,11 @@ createRoot(document.getElementById('root')!).render(
       <details>
         <summary>Example 3 - Two styles of children</summary>
         <ReactRenders3 />
+      </details>
+
+          <details>
+        <summary>Example 3c - Two styles of children - react compiler</summary>
+        <ReactRenders3c />
       </details>
 
       <details>
